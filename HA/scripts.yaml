@@ -1,0 +1,90 @@
+evsetmode:
+  alias: EVSetMode
+  sequence:
+  - action: number.set_value
+    metadata: {}
+    data:
+      value: 0
+    target:
+      entity_id: number.ev_charge_evmode
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 100
+  - if:
+    - condition: template
+      value_template: '{{ mode3phase == ''on''}}'
+    then:
+    - action: number.set_value
+      metadata: {}
+      data:
+        value: 1
+      target:
+        entity_id: number.ev_charge_evrl2
+    - action: number.set_value
+      metadata: {}
+      data:
+        value: 1
+      target:
+        entity_id: number.ev_charge_evmetertypen
+  - if:
+    - condition: template
+      value_template: '{{ mode3phase == ''off''}}'
+    then:
+    - action: number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: number.ev_charge_evrl2
+    - action: number.set_value
+      metadata: {}
+      data:
+        value: 0
+      target:
+        entity_id: number.ev_charge_evmetertypen
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 100
+  - action: number.set_value
+    metadata: {}
+    data:
+      value: '{{ new_evmode }}'
+    target:
+      entity_id: number.ev_charge_evmode
+  description: ''
+evsetmaxcurrent:
+  alias: EVSetMaxCurrent
+  sequence:
+#   - action: number.set_value
+#     metadata: {}
+#     data:
+#       value: 0
+#     target:
+#       entity_id: number.ev_charge_evmode
+#   - delay:
+#       hours: 0
+#       minutes: 0
+#       seconds: 0
+#       milliseconds: 100
+  - action: number.set_value
+    metadata: {}
+    data:
+      value: '{{ new_evmaxcurrent }}'
+    target:
+      entity_id: number.ev_charge_evmaxcurrentn
+#   - delay:
+#       hours: 0
+#       minutes: 0
+#       seconds: 0
+#       milliseconds: 100
+#   - action: number.set_value
+#     metadata: {}
+#     data:
+#       value: '{{ org_evmode }}'
+#     target:
+#       entity_id: number.ev_charge_evmode
+  description: ''

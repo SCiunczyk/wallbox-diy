@@ -1,0 +1,1117 @@
+title: Wallbox
+views:
+  - type: custom:grid-layout
+    path: buttons-grid
+    title: Wallbox
+    layout:
+      gridrows: auto
+      grid-template-columns: 30% 40% 30%
+      grid-template-areas: |
+        "col1 col2 col3"
+      mediaquery:
+        '(max-width: 600px)':
+          grid-template-columns: 100%
+          grid-template-areas: |
+            "col2"
+    cards:
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        style:
+          margin: 0px
+          padding: 0px
+          card_margin: 0px
+        cards:
+          - type: custom:button-card
+            name: DomBusEVSE DIY WallBox
+            styles:
+              card:
+                - height: 100%
+            view_layout:
+              grid-column: 1 / 13
+              grid-row: 1 / 1
+          - type: custom:text-divider-row
+            text: Vehicle and Charging Status
+            styles:
+              card:
+                - height: 100%
+            view_layout:
+              grid-column: 1 / 13
+              grid-row: 2 / 2
+          - type: custom:button-card
+            name: EV Status
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 10px 2px 2px 2px;
+            view_layout:
+              grid-column: 1 / 4
+              grid-row: 3 / 3
+          - type: custom:button-card
+            entity: sensor.ev_charge_evstate
+            state:
+              - value: 0
+                icon: mdi:lightbulb-question-outline
+                color: gray
+                name: 'Off'
+              - value: 1
+                icon: mdi:power-plug-off-outline
+                color: gray
+                name: Disconnected
+              - value: 2
+                icon: mdi:power-plug-outline
+                color: blue
+                name: Connected
+              - value: 3
+                icon: mdi:power-plug
+                color: lightgreen
+                name: Charging
+              - value: 4
+                icon: mdi:power-plug
+                color: green
+                name: Charging + Vent
+              - value: 5
+                icon: mdi:alarm-light-outline
+                color: red
+                name: Alarm EV !!!
+              - value: 6
+                icon: mdi:alarm-light-off
+                color: red
+                name: Alarm Power Outage
+              - value: 7
+                icon: mdi:alarm-light
+                color: red
+                name: Alarm Relay Welded
+            show_entity_picture: true
+            show_icon: true
+            show_name: true
+            show_state: true
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+              grid:
+                - grid-template-areas: '"i n s"'
+                - grid-template-columns: .3fr 1fr .2fr
+                - grid-template-rows: 1fr
+              icon:
+                - align-self: middle
+                - justify-self: end
+              name:
+                - align-self: middle
+                - justify-self: start
+                - padding-bottom: 0px
+            tap_action:
+              action: none
+            view_layout:
+              grid-column: 4 / 9
+              grid-row: 3 / 3
+          - type: custom:button-card
+            name: ''
+            label: Charge Power
+            entity: sensor.ev_charge_evpower
+            show_entity_picture: false
+            show_icon: false
+            show_name: false
+            show_state: true
+            show_units: true
+            show_label: true
+            units: W
+            styles:
+              label:
+                - font: 10px Arial
+              card:
+                - height: 100%
+                - border-radius: 2px 10px 2px 2px;
+            view_layout:
+              grid-column: 9 / 12
+              grid-row: 3 / 3
+          - type: custom:button-card
+            name: EV RL
+            entity: sensor.ev_charge_evcharging
+            state:
+              - value: 0
+                icon: mdi:electric-switch
+                color: gray
+              - value: 1
+                icon: mdi:electric-switch-closed
+                color: green
+            tap_action:
+              action: none
+            show_entity_picture: true
+            show_icon: true
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - padding: 0px
+              grid:
+                - grid-template-areas: '"i n"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr
+              icon:
+                - align-self: middle
+                - justify-self: end
+              name:
+                - align-self: middle
+                - justify-self: start
+                - padding-bottom: 0px
+            view_layout:
+              grid-column: 1 / 6
+              grid-row: 4 / 4
+          - type: custom:button-card
+            name: EV RL2
+            entity: number.ev_charge_evrl2
+            state:
+              - value: 0
+                icon: mdi:electric-switch
+                color: gray
+              - value: 1
+                icon: mdi:electric-switch-closed
+                color: green
+            tap_action:
+              action: none
+            show_entity_picture: true
+            show_icon: true
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 10px;
+                - padding: 0px
+              grid:
+                - grid-template-areas: '"i n"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr
+              icon:
+                - align-self: middle
+                - justify-self: end
+              name:
+                - align-self: middle
+                - justify-self: start
+                - padding-bottom: 0px
+            view_layout:
+              grid-column: 1 / 6
+              grid-row: 5 / 5
+          - type: custom:button-card
+            name: In EV
+            entity: sensor.ev_charge_evinac
+            show_entity_picture: true
+            show_icon: true
+            state:
+              - value: 0
+                icon: mdi:lightning-bolt-outline
+                color: gray
+              - value: 1
+                icon: mdi:lightning-bolt
+                color: lightgreen
+            tap_action:
+              action: none
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - padding: 0px
+              grid:
+                - grid-template-areas: '"i n"'
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: 1fr
+              icon:
+                - align-self: middle
+                - justify-self: end
+                - height: 50px
+                - width: 100px
+              name:
+                - align-self: middle
+                - justify-self: start
+                - padding-bottom: 0px
+            view_layout:
+              grid-column: 6 / 9
+              grid-row: 4 / 6
+          - type: custom:button-card
+            name: ''
+            label: Charge Current
+            entity: number.ev_charge_evcurrent
+            show_entity_picture: false
+            show_icon: false
+            show_name: false
+            show_state: true
+            show_units: true
+            show_label: true
+            units: A
+            styles:
+              label:
+                - font: 10px Arial
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+            view_layout:
+              grid-column: 9 / 12
+              grid-row: 4 / 4
+          - type: custom:button-card
+            name: ''
+            label: Grid Power
+            entity: number.ev_charge_grid_power
+            show_entity_picture: false
+            show_icon: false
+            show_name: false
+            show_state: true
+            show_units: true
+            show_label: true
+            units: W
+            styles:
+              label:
+                - font: 10px Arial
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 10px 2px;
+            view_layout:
+              grid-column: 9 / 12
+              grid-row: 5 / 5
+          - type: custom:text-divider-row
+            text: Charging modes
+            styles:
+              card:
+                - height: 100%
+            view_layout:
+              grid-column: 1 / 13
+              grid-row: 6 / 6
+          - type: custom:button-card
+            name: 'OFF'
+            entity: number.ev_charge_evmode
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 10px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 0) 
+                      return 'orange';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmode
+              service_data:
+                new_evmode: 0
+                mode3phase: |
+                  [[[
+                    if (states['number.ev_charge_ev3pselect'].state == 254)
+                      return states['input_boolean.ev3phasecharge'].state;
+                    else
+                      return 'n/a';
+                  ]]]
+            view_layout:
+              grid-column: 1 / 4
+              grid-row: 7 / 9
+          - type: custom:button-card
+            name: Solar Only Mode
+            entity: number.ev_charge_evmode
+            show_entity_picture: false
+            show_icon: false
+            show_state: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 10px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 1) 
+                      return 'orange';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmode
+              service_data:
+                new_evmode: 1
+                mode3phase: |
+                  [[[
+                    if (states['number.ev_charge_ev3pselect'].state == 254)
+                      return states['input_boolean.ev3phasecharge'].state;
+                    else
+                      return 'n/a';
+                  ]]]
+            view_layout:
+              grid-column: 4 / 12
+              grid-row: 7 / 9
+          - type: custom:button-card
+            name: 25%
+            entity: number.ev_charge_evmode
+            show_entity_picture: false
+            show_icon: false
+            show_state: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 2) 
+                      return 'orange';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmode
+              service_data:
+                new_evmode: 2
+                mode3phase: |
+                  [[[
+                    if (states['number.ev_charge_ev3pselect'].state == 254)
+                      return states['input_boolean.ev3phasecharge'].state;
+                    else
+                      return 'n/a';
+                  ]]]
+            view_layout:
+              grid-column: 1 / 4
+              grid-row: 9 / 11
+          - type: custom:button-card
+            name: 50%
+            entity: number.ev_charge_evmode
+            show_entity_picture: false
+            show_icon: false
+            show_state: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 3) 
+                      return 'orange';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmode
+              service_data:
+                new_evmode: 3
+                mode3phase: |
+                  [[[
+                    if (states['number.ev_charge_ev3pselect'].state == 254)
+                      return states['input_boolean.ev3phasecharge'].state;
+                    else
+                      return 'n/a';
+                  ]]]
+            view_layout:
+              grid-column: 4 / 7
+              grid-row: 9 / 11
+          - type: custom:button-card
+            name: 75%
+            entity: number.ev_charge_evmode
+            show_entity_picture: false
+            show_icon: false
+            show_state: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 4) 
+                      return 'orange';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmode
+              service_data:
+                new_evmode: 4
+                mode3phase: |
+                  [[[
+                    if (states['number.ev_charge_ev3pselect'].state == 254)
+                      return states['input_boolean.ev3phasecharge'].state;
+                    else
+                      return 'n/a';
+                  ]]]
+            view_layout:
+              grid-column: 7 / 10
+              grid-row: 9 / 11
+          - type: custom:button-card
+            name: 100%
+            entity: number.ev_charge_evmode
+            show_entity_picture: false
+            show_icon: false
+            show_state: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 5) 
+                      return 'orange';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmode
+              service_data:
+                new_evmode: 5
+                mode3phase: |
+                  [[[
+                    if (states['number.ev_charge_ev3pselect'].state == 254)
+                      return states['input_boolean.ev3phasecharge'].state;
+                    else
+                      return 'n/a';
+                  ]]]
+            view_layout:
+              grid-column: 10 / 12
+              grid-row: 9 / 11
+          - type: custom:button-card
+            name: Managed Mode
+            entity: number.ev_charge_evmode
+            show_entity_picture: false
+            show_icon: false
+            show_state: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 10px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 6) 
+                      return 'orange';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmode
+              service_data:
+                new_evmode: 6
+                mode3phase: |
+                  [[[
+                    if (states['number.ev_charge_ev3pselect'].state == 254)
+                      return states['input_boolean.ev3phasecharge'].state;
+                    else
+                      return 'n/a';
+                  ]]]
+            view_layout:
+              grid-column: 1 / 8
+              grid-row: 11 / 12
+          - type: custom:button-card
+            name: 3 Phase
+            layout: icon_name
+            entity: input_boolean.ev3phasecharge
+            lock:
+              enabled: |
+                [[[
+                  return ((states['number.ev_charge_ev3pselect'].state == 0) | (states['number.ev_charge_evmode'].state > 0));
+                ]]]
+              unlock: none
+            state:
+              - value: 'on'
+                name: 3 Phase
+              - value: 'off'
+                name: 1 Phase
+            show_entity_picture: true
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 10px 2px;
+              lock:
+                - justify-content: center
+                - align-items: center
+            triggers_update:
+              - number.ev_charge_ev3pselect
+            view_layout:
+              grid-column: 8 / 12
+              grid-row: 11 / 12
+          - type: custom:text-divider-row
+            text: Maximum Charging Current (A)
+            styles:
+              card:
+                - height: 100%
+            view_layout:
+              grid-column: 1 / 13
+              grid-row: 12 / 12
+          - type: custom:button-card
+            name: 6
+            entity: sensor.ev_charge_evmaxcurrent
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 10px 2px 2px 10px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 6) 
+                      return 'lightblue';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmaxcurrent
+              service_data:
+                org_evmode: |
+                  [[[
+                    return states['number.ev_charge_evmode'].state;
+                  ]]]
+                new_evmaxcurrent: 6
+            view_layout:
+              grid-column: 1 / 1
+              grid-row: 13 / 13
+          - type: custom:button-card
+            name: 7
+            entity: sensor.ev_charge_evmaxcurrent
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 7) 
+                      return 'lightblue';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmaxcurrent
+              service_data:
+                org_evmode: |
+                  [[[
+                    return states['number.ev_charge_evmode'].state;
+                  ]]]
+                new_evmaxcurrent: 7
+            view_layout:
+              grid-column: 2 / 2
+              grid-row: 13 / 13
+          - type: custom:button-card
+            name: 8
+            entity: sensor.ev_charge_evmaxcurrent
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 8) 
+                      return 'lightblue';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmaxcurrent
+              service_data:
+                org_evmode: |
+                  [[[
+                    return states['number.ev_charge_evmode'].state;
+                  ]]]
+                new_evmaxcurrent: 8
+            view_layout:
+              grid-column: 3 / 3
+              grid-row: 13 / 13
+          - type: custom:button-card
+            name: 9
+            entity: sensor.ev_charge_evmaxcurrent
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 9) 
+                      return 'lightblue';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmaxcurrent
+              service_data:
+                org_evmode: |
+                  [[[
+                    return states['number.ev_charge_evmode'].state;
+                  ]]]
+                new_evmaxcurrent: 9
+            view_layout:
+              grid-column: 4 / 4
+              grid-row: 13 / 13
+          - type: custom:button-card
+            name: 10
+            entity: sensor.ev_charge_evmaxcurrent
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 10)
+                      return 'lightblue';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmaxcurrent
+              service_data:
+                org_evmode: |
+                  [[[
+                    return states['number.ev_charge_evmode'].state;
+                  ]]]
+                new_evmaxcurrent: 10
+            view_layout:
+              grid-column: 5 / 5
+              grid-row: 13 / 13
+          - type: custom:button-card
+            name: 11
+            entity: sensor.ev_charge_evmaxcurrent
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 11)
+                      return 'lightblue';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmaxcurrent
+              service_data:
+                org_evmode: |
+                  [[[
+                    return states['number.ev_charge_evmode'].state;
+                  ]]]
+                new_evmaxcurrent: 11
+            view_layout:
+              grid-column: 6 / 6
+              grid-row: 13 / 13
+          - type: custom:button-card
+            name: 12
+            entity: sensor.ev_charge_evmaxcurrent
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 12)
+                      return 'lightblue';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmaxcurrent
+              service_data:
+                org_evmode: |
+                  [[[
+                    return states['number.ev_charge_evmode'].state;
+                  ]]]
+                new_evmaxcurrent: 12
+            view_layout:
+              grid-column: 7 / 7
+              grid-row: 13 / 13
+          - type: custom:button-card
+            name: 13
+            entity: sensor.ev_charge_evmaxcurrent
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 13)
+                      return 'lightblue';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmaxcurrent
+              service_data:
+                org_evmode: |
+                  [[[
+                    return states['number.ev_charge_evmode'].state;
+                  ]]]
+                new_evmaxcurrent: 13
+            view_layout:
+              grid-column: 8 / 8
+              grid-row: 13 / 13
+          - type: custom:button-card
+            name: 14
+            entity: sensor.ev_charge_evmaxcurrent
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 14)
+                      return 'lightblue';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmaxcurrent
+              service_data:
+                org_evmode: |
+                  [[[
+                    return states['number.ev_charge_evmode'].state;
+                  ]]]
+                new_evmaxcurrent: 14
+            view_layout:
+              grid-column: 9 / 9
+              grid-row: 13 / 13
+          - type: custom:button-card
+            name: 15
+            entity: sensor.ev_charge_evmaxcurrent
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 2px 2px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 15)
+                      return 'lightblue';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmaxcurrent
+              service_data:
+                org_evmode: |
+                  [[[
+                    return states['number.ev_charge_evmode'].state;
+                  ]]]
+                new_evmaxcurrent: 15
+            view_layout:
+              grid-column: 10 / 10
+              grid-row: 13 / 13
+          - type: custom:button-card
+            name: 16
+            entity: sensor.ev_charge_evmaxcurrent
+            show_entity_picture: false
+            show_icon: false
+            styles:
+              card:
+                - height: 100%
+                - border-radius: 2px 10px 10px 2px;
+                - background: |
+                    [[[ 
+                      let vState = entity.state | 0;
+                      if((vState) == 16)
+                      return 'lightblue';
+                    ]]]
+            tap_action:
+              action: call-service
+              service: script.evsetmaxcurrent
+              service_data:
+                org_evmode: |
+                  [[[
+                    return states['number.ev_charge_evmode'].state;
+                  ]]]
+                new_evmaxcurrent: 16
+            view_layout:
+              grid-column: 11 / 11
+              grid-row: 13 / 13
+        layout:
+          grid-template-columns: 9% 9% 9% 9% 9% 9% 9% 9% 9% 9% 9%
+          grid-template-rows: 50px 40px 55px 55px 55px 40px 50px 50px 50px 50px 55px 40px 80px
+          margin: 0px
+          padding: 0px
+          card_margin: 0px
+          grid-card-gap: 6px
+        view_layout:
+          grid-area: col2
+  - type: sections
+    path: sensors
+    max_columns: 4
+    title: Sensors
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Sensors
+            heading_style: title
+            badges: []
+          - type: tile
+            entity: sensor.ev_charge_evcharging
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+            name: EVCharging (0000)
+          - type: tile
+            entity: number.ev_charge_evrl2
+            name: EVRL2 (0001)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evinac
+            name: EVInAC (0002)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: number.ev_charge_evmode
+            name: EVMode (0003)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evstate
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+            name: EVState (0004)
+          - type: tile
+            entity: number.ev_charge_evcurrent
+            name: EVCurrent (0005)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evpower
+            name: EVPower (0006)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evpowersolar
+            name: EVPowerSolar (0007)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evpowergrid
+            name: EVPowerGrid (0008)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evvoltage
+            name: EVVoltage (0009)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evpf
+            name: EVPF (0010)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: number.ev_charge_grid_power
+            name: Grid Power (0011)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: number.ev_charge_ev3pselect
+            name: EV3PSELECT (0513)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evse_revision_major
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+            name: EVSE Revision major (8198)
+          - type: tile
+            entity: sensor.ev_charge_evse_revision_minor
+            name: EVSE Revision minor (8199)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evmaxcurrent
+            name: EVMAXCURRENT (9001)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evmaxpower
+            name: EVMAXPOWER (9002)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evstartpower
+            name: EVSTARTPOWER (9003)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evstoptime
+            name: EVSTOPTIME (9004)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evautostart
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+            name: EVAUTOSTART (9005)
+          - type: tile
+            entity: sensor.ev_charge_evmaxpower2
+            name: EVMAXPOWER2 (9006)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evmaxpowertime
+            name: EVMAXPOWERTIME (9007)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evmaxpowertime2
+            name: EVMAXPOWERTIME2 (9008)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evmetertype
+            name: EVMETERTYPE (9010)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_evwaittime
+            name: EVWAITTIME (9009)
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+        column_span: 2
+      - type: grid
+        cards:
+          - type: heading
+            heading: EV Charge Power / Energy Meter
+            heading_style: title
+          - type: tile
+            entity: sensor.ev_charge_ev_charge_power
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+          - type: tile
+            entity: sensor.ev_charge_ev_charge_total_energy
+            layout_options:
+              grid_columns: 3
+              grid_rows: 1
+      - type: grid
+        cards:
+          - type: heading
+            heading: Numbers
+            heading_style: title
+          - type: tile
+            entity: number.ev_charge_evautostartn
+          - type: tile
+            entity: number.ev_charge_evmaxcurrentn
+          - type: tile
+            entity: number.ev_charge_evmaxpower2n
+          - type: tile
+            entity: number.ev_charge_evmaxpowern
+          - type: tile
+            entity: number.ev_charge_evmaxpowertime2n
+          - type: tile
+            entity: number.ev_charge_evmaxpowertimen
+          - type: tile
+            entity: number.ev_charge_evmetertypen
+          - type: tile
+            entity: number.ev_charge_evstartpowern
+          - type: tile
+            entity: number.ev_charge_evstoptimen
+          - type: tile
+            entity: number.ev_charge_evwaittimen
+  - path: default_view
+    title: Creasol.it
+    cards:
+      - type: entities
+        entities:
+          - entity: input_select.evmodename
+          - entity: input_button.evmodeset
+          - entity: input_select.evstatename
+          - entity: sensor.ev_charge_evcharging
+          - entity: input_boolean.evrl2set
+            name: EV RL 2
+            icon: mdi:electric-switch
+          - entity: number.ev_charge_grid_power
+            name: Grid Power
+        title: DomBusEVSE
+      - type: entities
+        entities:
+          - entity: input_number.evmaxcurrent
+          - entity: input_number.evmaxgridpower
+          - entity: input_number.evstartpower
+          - entity: input_number.evstoptime
+          - entity: input_number.evautostart
+          - entity: input_number.evmaxpower2
+          - entity: input_number.evmaxpowertime
+          - entity: input_number.evmaxpowertime2
+          - entity: input_number.evwaittime
+          - entity: input_number.evmetertype
+          - entity: input_number.ev3pselect
+        title: DomBusEVSE configuration
+      - type: gauge
+        entity: sensor.ev_charge_evpower
+        max: 8000
+        needle: true
+        severity:
+          green: 0
+          yellow: 6000
+          red: 6600
+      - type: gauge
+        entity: sensor.ev_charge_evpowersolar
+        max: 6000
+        needle: true
+        severity:
+          green: 0
+          yellow: 25000
+          red: 25000
+      - type: gauge
+        entity: number.ev_charge_evcurrent
+        min: 0
+        max: 20
+        needle: true
+        severity:
+          green: 6
+          yellow: 12
+          red: 15
+      - type: gauge
+        entity: sensor.ev_charge_evpowergrid
+        max: 8000
+        needle: true
+        severity:
+          green: 0
+          yellow: 0
+          red: 6600
+      - type: gauge
+        entity: sensor.ev_charge_evpf
+        min: 80
+        max: 100
+        needle: true
+        severity:
+          green: 98
+          yellow: 96
+          red: 0
+      - type: gauge
+        entity: sensor.ev_charge_evvoltage
+        min: 210
+        max: 253
+        needle: true
+        severity:
+          green: 230
+          yellow: 220
+          red: 0
+    type: masonry

@@ -1,0 +1,472 @@
+- id: evgridpowerautomation
+  alias: EVGridPowerAutomation
+  triggers:
+#  - entity_id: sensor.zemismart_spm02_d2tw_power
+  - trigger: time_pattern
+    seconds: '/5'
+  actions:
+  - target:
+      entity_id:
+      - number.ev_charge_grid_power
+    data:
+      value: 
+       "{% if states('sensor.zemismart_spm02_d2tw_power')|int < 0 %}
+          {{ 65536 + states('sensor.zemismart_spm02_d2tw_power') | int }}
+        {% else %}
+          {{ states('sensor.zemismart_spm02_d2tw_power') | int }}
+        {% endif %}"
+    action: number.set_value
+  mode: single
+
+
+# Set the EVMAXCURRENT parameter
+- id: '1686869578501'
+  alias: EVMaxCurrentAutomation
+  trigger:
+  - platform: state
+    entity_id:
+    - input_number.evmaxcurrent
+  actions:
+  - target:
+      entity_id:
+      - number.ev_charge_evmaxcurrentn
+    data:
+      value: '{{ states(''input_number.evmaxcurrent'') | int }}'
+    action: number.set_value
+  mode: single
+- id: '1686869578501s'
+  alias: EVMaxCurrentAutomationS
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.ev_charge_evmaxcurrent
+  - platform: homeassistant
+    event: start
+  actions:
+  - target:
+      entity_id:
+      - input_number.evmaxcurrent
+    data:
+      value: '{{ states(''sensor.ev_charge_evmaxcurrent'') | int }}'
+    action: input_number.set_value
+  mode: single
+  
+# Set the EVMAXPOWER parameter
+- id: '1686869578502'
+  alias: EVMaxGridPowerAutomation
+  trigger:
+  - platform: state
+    entity_id: input_number.evmaxgridpower
+  actions:
+  - target:
+      entity_id:
+      - number.ev_charge_evmaxpowern
+    data:
+      value: '{{ states(''input_number.evmaxgridpower'') | int }}'
+    action: number.set_value
+  mode: single
+- id: '1686869578502s'
+  alias: EVMaxGridPowerAutomationS
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.ev_charge_evmaxpower
+  - platform: homeassistant
+    event: start
+  actions:
+  - target:
+      entity_id:
+      - input_number.evmaxgridpower
+    data:
+      value: '{{ states(''sensor.ev_charge_evmaxpower'') | int }}'
+    action: input_number.set_value
+  mode: single
+  
+# Set the EVSTARTPOWER parameter
+- id: '1686869578503'
+  alias: EVStartPowerAutomation
+  trigger:
+  - platform: state
+    entity_id: input_number.evstartpower
+  actions:
+  - target:
+      entity_id:
+      - number.ev_charge_evstartpowern
+    data:
+      value: '{{ states(''input_number.evstartpower'') | int }}'
+    action: number.set_value
+  mode: single
+- id: '1686869578503s'
+  alias: EVStartPowerAutomationS
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.ev_charge_evstartpower
+  - platform: homeassistant
+    event: start
+  actions:
+  - target:
+      entity_id:
+      - input_number.evstartpower
+    data:
+      value: '{{ states(''sensor.ev_charge_evstartpower'') | int }}'
+    action: input_number.set_value
+  mode: single
+
+# Set the EVSTOPTIME parameter
+- id: '1686869578504'
+  alias: EVStopTimeAutomation
+  trigger:
+  - platform: state
+    entity_id: input_number.evstoptime
+  actions:
+  - target:
+      entity_id:
+      - number.ev_charge_evstoptimen
+    data:
+      value: '{{ states(''input_number.evstoptime'') | int }}'
+    action: number.set_value
+  mode: single
+- id: '1686869578504s'
+  alias: EVStopTimeAutomationS
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.ev_charge_evstoptime
+  - platform: homeassistant
+    event: start
+  actions:
+  - target:
+      entity_id:
+      - input_number.evstoptime
+    data:
+      value: '{{ states(''sensor.ev_charge_evstoptime'') | int }}'
+    action: input_number.set_value
+  mode: single
+
+# Set the EVAUTOSTART parameter
+- id: '1686869578505'
+  alias: EVAutoStartAutomation
+  trigger:
+  - platform: state
+    entity_id: input_number.evautostart
+  action:
+  - target:
+      entity_id:
+      - number.ev_charge_evautostartn
+    data:
+      value: '{{ states(''input_number.evautostart'') | int }}'
+    action: number.set_value
+  mode: single
+  
+- id: '1686869578505s'
+  alias: EVAutoStartAutomationS
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.ev_charge_evautostart
+  - platform: homeassistant
+    event: start
+  actions:
+  - target:
+      entity_id:
+      - input_number.evautostart
+    data:
+      value: '{{ states(''sensor.ev_charge_evautostart'') | int }}'
+    action: input_number.set_value
+  mode: single
+
+# Set the EVMAXPOWER2 parameter
+- id: '1686869578506'
+  alias: EVMaxPower2
+  trigger:
+  - platform: state
+    entity_id: input_number.evmaxpower2
+  action:
+  - target:
+      entity_id:
+      - number.ev_charge_evmaxpower2n
+    data:
+      value: '{{ states(''input_number.evmaxpower2'') | int }}'
+    action: number.set_value
+  mode: single
+- id: '1686869578506s'
+  alias: EVMaxPower2S
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.ev_charge_evmaxpower2
+  - platform: homeassistant
+    event: start
+  actions:
+  - target:
+      entity_id:
+      - input_number.evmaxpower2
+    data:
+      value: '{{ states(''sensor.ev_charge_evmaxpower2'') | int }}'
+    action: input_number.set_value
+  mode: single
+
+
+# Set the EVMAXPOWERTIME parameter
+- id: '1686869578507'
+  alias: EVMaxPowerTimeAutomation
+  trigger:
+  - platform: state
+    entity_id: input_number.evmaxpowertime
+  action:
+  - target:
+      entity_id:
+      - number.ev_charge_evmaxpowertimen
+    data:
+      value: '{{ states(''input_number.evmaxpowertime'') | int }}'
+    action: number.set_value
+  mode: single
+- id: '1686869578507s'
+  alias: EVMaxPowerTimeAutomationS
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.ev_charge_evmaxpowertime
+  - platform: homeassistant
+    event: start
+  actions:
+  - target:
+      entity_id:
+      - input_number.evmaxpowertime
+    data:
+      value: '{{ states(''sensor.ev_charge_evmaxpowertime'') | int }}'
+    action: input_number.set_value
+  mode: single
+
+
+# Set the EVMAXPOWERTIME2 parameter
+- id: '1686869578508'
+  alias: EVMaxPowerTime2Automation
+  trigger:
+  - platform: state
+    entity_id: input_number.evmaxpowertime2
+  action:
+  - target:
+      entity_id:
+      - number.ev_charge_evmaxpowertime2n
+    data:
+      value: '{{ states(''input_number.evmaxpowertime2'') | int }}'
+    action: number.set_value
+  mode: single
+- id: '1686869578508s'
+  alias: EVMaxPowerTime2AutomationS
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.ev_charge_evmaxpowertime2
+  - platform: homeassistant
+    event: start
+  actions:
+  - target:
+      entity_id:
+      - input_number.evmaxpowertime2
+    data:
+      value: '{{ states(''sensor.ev_charge_evmaxpowertime2'') | int }}'
+    action: input_number.set_value
+  mode: single
+
+# Set the EVWAITTIME parameter
+- id: '1686869578509'
+  alias: EVWaitTimeAutomation
+  trigger:
+  - platform: state
+    entity_id: input_number.evwaittime
+  action:
+  - target:
+      entity_id:
+      - number.ev_charge_evwaittimen
+    data:
+      value: '{{ states(''input_number.evwaittime'') | int }}'
+    action: number.set_value
+  mode: single
+- id: '1686869578509s'
+  alias: EVWaitTimeAutomationS
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.ev_charge_evwaittime
+  - platform: homeassistant
+    event: start
+  actions:
+  - target:
+      entity_id:
+      - input_number.evwaittime
+    data:
+      value: '{{ states(''sensor.ev_charge_evwaittime'') | int }}'
+    action: input_number.set_value
+  mode: single
+
+# Set the EVMETERTYPE parameter: 0=single phase, 1=three phase
+- id: '16868695785010'
+  alias: EVMeterTypeAutomation
+  trigger:
+  - platform: state
+    entity_id: input_number.evmetertype
+  action:
+  - target:
+      entity_id:
+      - number.ev_charge_evmetertypen
+    data:
+      value: '{{ states(''input_number.evmetertype'') | int }}'
+    action: number.set_value
+  mode: single
+- id: '1686869578510s'
+  alias: EVMeterTypeAutomationS
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.ev_charge_evmetertype
+  - platform: homeassistant
+    event: start
+  actions:
+  - target:
+      entity_id:
+      - input_number.evmetertype
+    data:
+      value: '{{ states(''sensor.ev_charge_evmetertype'') | int }}'
+    action: input_number.set_value
+  mode: single
+
+# Set the EV3PSELECT parameter: 0=single phase, 254=three phase
+- id: '16868695785011'
+  alias: EV3PSelectAutomation
+  trigger:
+  - platform: state
+    entity_id: input_number.ev3pselect
+  action:
+  - target:
+      entity_id:
+      - number.ev_charge_ev3pselect
+    data:
+      value: '{{ states(''input_number.ev3pselect'') | int }}'
+    action: number.set_value
+  mode: single
+- id: '1686869578511s'
+  alias: EV3PSelectAutomationS
+  trigger:
+  - platform: state
+    entity_id:
+    - number.ev_charge_ev3pselect
+  - platform: homeassistant
+    event: start
+  actions:
+  - target:
+      entity_id:
+      - input_number.ev3pselect
+    data:
+      value: '{{ states(''number.ev_charge_ev3pselect'') | int }}'
+    action: input_number.set_value
+  mode: single
+  
+
+- id: evstatenameautomation
+  alias: Automation that updates EVStateName entity when EVState changes
+  trigger:
+  - platform: state
+    entity_id: sensor.ev_charge_evstate
+  - platform: homeassistant
+    event: start
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.evstatename
+      option: '{% set slist = state_attr(''input_select.evstatename'',''options'')%} 
+        {% set item = states.sensor.ev_charge_evstate.state|int %} 
+        {{slist[item]}}'
+
+- id: evmodenameautomation
+  alias: Automation that updates EVModeName entity when EVMode changes
+  trigger:
+  - platform: state
+    entity_id: number.ev_charge_evmode
+  - platform: homeassistant
+    event: start
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.evmodename
+      option: '{% set slist = state_attr(''input_select.evmodename'',''options'')
+        %} {% set item = states.number.ev_charge_evmode.state|int %} {{slist[item]}}
+
+        '
+- id: evmodenameautomationrev
+  alias: Automation that updates EVMode from EVModeName when button EVStateSet is
+    pushed
+  trigger:
+  - platform: state
+    entity_id: input_button.evmodeset
+  action:
+  - target:
+      entity_id:
+      - number.ev_charge_evmode
+    data:
+      value: '{% set slist = state_attr(''input_select.evmodename'',''options'') %}
+        {% set itemname = states.input_select.evmodename.state %} {% set itemnum =
+        0 %} {% for name in slist %} {% if name == itemname %} {{ loop.index0 }} {%
+        endif %} {% endfor %}'
+    action: number.set_value
+  mode: single
+
+
+- id: '1728922721476'
+  alias: testRL2 On
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_boolean.evrl2set
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - device_id: 17d2775ce475a00c066e73256f712602
+    domain: number
+    entity_id: number.ev_charge_evrl2
+    type: set_value
+    value: 1
+  mode: single
+- id: '1728922915094'
+  alias: testRL2 Off
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_boolean.evrl2set
+    from: 'on'
+    to: 'off'
+  conditions: []
+  actions:
+  - device_id: 17d2775ce475a00c066e73256f712602
+    domain: number
+    entity_id: number.ev_charge_evrl2
+    type: set_value
+    value: 0
+  mode: single
+
+
+- id: '1729013803905'
+  alias: Brama Nice
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - switch.brama_nice
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 40015ba4e4b0cc40cce6e58567337acb
+    entity_id: switch.brama_nice #fad953b5938b37154c2b8bca54f84c36
+    domain: switch
+  mode: single
