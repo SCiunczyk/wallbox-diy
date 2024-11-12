@@ -19,10 +19,12 @@ Of course, this required adapting the original HA configuration files from the c
 My hardware WallBox is built in a variant that allows switching between single-phase and three-phase charging. I also wanted a mobile version of the dashboard. I took the opportunity to practice building my own dashboard in HA using the famous custom:button-card, custom:layout-card, custom:text-divider-row - all downloadable from HACS.
 
 Desktop version of Home Assistant Dashboard:
-![ha-panel-desktop](ha-panel-desktop.png)
+
+<img src="ha-panel-desktop.png" width="900px">
 
 and it's mobile version:
-![ha-panel-mobile](ha-panel-mobile.png)
+
+<img src="ha-panel-mobile.png" width="540px">
 
 I built the Wi-Fi ModBus proxy module from this schematic, soldered it to a piece of universal PCB and put it in a small 3D printed PETG case. In my case, I replaced the original XIAO Wi-Fi antenna with a slightly more efficient one (from the NanoPi Duo2 module) for more reliable communication. If you want to use my files in your project, you can do so without any restrictions. 
 
