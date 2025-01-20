@@ -38,3 +38,5 @@ I built the Wi-Fi ModBus proxy module from this schematic, soldered it to a piec
 ![wifi-modbus-esp32-proxy-05](wifi-modbus-esp32-proxy-05.jpg)
 
 I will follow the changes on ESPHome and if some good soul finds/corrects the source of the problem with reading high registers I, for my part, will apply modifications to remove the workarounds. Unfortunately I'm probably too lame to detect the source of the problem in the ESPHome code myself 😬.
+
+Thanks to user @brambo123 I was able to fix the problem with reading upper registers, so the updated files are uploaded.

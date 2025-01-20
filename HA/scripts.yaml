@@ -27,7 +27,7 @@ evsetmode:
       data:
         value: 1
       target:
-        entity_id: number.ev_charge_evmetertypen
+        entity_id: number.ev_charge_evmetertype
   - if:
     - condition: template
       value_template: '{{ mode3phase == ''off''}}'
@@ -43,7 +43,7 @@ evsetmode:
       data:
         value: 0
       target:
-        entity_id: number.ev_charge_evmetertypen
+        entity_id: number.ev_charge_evmetertype
   - delay:
       hours: 0
       minutes: 0
@@ -59,32 +59,10 @@ evsetmode:
 evsetmaxcurrent:
   alias: EVSetMaxCurrent
   sequence:
-#   - action: number.set_value
-#     metadata: {}
-#     data:
-#       value: 0
-#     target:
-#       entity_id: number.ev_charge_evmode
-#   - delay:
-#       hours: 0
-#       minutes: 0
-#       seconds: 0
-#       milliseconds: 100
   - action: number.set_value
     metadata: {}
     data:
       value: '{{ new_evmaxcurrent }}'
     target:
-      entity_id: number.ev_charge_evmaxcurrentn
-#   - delay:
-#       hours: 0
-#       minutes: 0
-#       seconds: 0
-#       milliseconds: 100
-#   - action: number.set_value
-#     metadata: {}
-#     data:
-#       value: '{{ org_evmode }}'
-#     target:
-#       entity_id: number.ev_charge_evmode
+      entity_id: number.ev_charge_evmaxcurrent
   description: ''
