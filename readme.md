@@ -1,3 +1,6 @@
+## !!!! WARNING !!!! 
+## there is new version here https://github.com/SCiunczyk/ha-dombus-evse-wallbox
+
 ### DIV WallBox Wi-Fi ModBus ESP32 proxy
 
 
